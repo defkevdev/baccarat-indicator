@@ -214,8 +214,11 @@ function App() {
     const countB = results.filter(r => r === 'B').length;
     if (countP > countB) setPrediction('คาดว่า: B (Banker)');
     else if (countB > countP) setPrediction('คาดว่า: P (Player)');
-    else setPrediction('คาดว่า :');
-  }, [results]);
+    else {
+      setPrediction('คาดว่า :');
+      setRandomPrediction(Math.random() < 0.5 ? 'P' : 'B');
+    }
+  }, [results]); // <-- ต้องมีแค่ results
 
   // แสดงวงกลมสี
   const renderCircle = (value, idx, isTie = false) => {
@@ -276,9 +279,7 @@ function App() {
     if (prediction.includes('P (Player)')) return renderCircle('P', 'prediction');
     if (prediction.includes('กรุณากรอกผล')) return <p style={{ color: 'orange' }}>{prediction}</p>;
     if (prediction.trim() === 'คาดว่า :') {
-      // กรณีสุ่ม ให้แสดง P หรือ B สลับกัน
-      const random = Math.random() < 0.5 ? 'P' : 'B';
-      return renderCircle(random, 'prediction');
+      return renderCircle(randomPrediction, 'prediction');
     }
     return null;
   };
@@ -478,6 +479,8 @@ function App() {
       setBalance(newBalance);
     }
   };
+
+  const [randomPrediction, setRandomPrediction] = useState('P');
 
   return (
     <div className="App">
@@ -875,6 +878,9 @@ function App() {
             {bigRoad.map((row, rowIdx) =>
               row.map((cell, colIdx) => renderBigRoadCell(cell, rowIdx, colIdx))
             )}
+          </div>
+          <div style={{ color: '#ffeb3b', fontSize: 13, marginTop: 6, textAlign: 'center' }}>
+            *คลิกขวาที่วงกลมเพื่อลบผลลัพธ์*
           </div>
         </div>
         <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 40 }}>
