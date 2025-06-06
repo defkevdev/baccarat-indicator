@@ -63,6 +63,8 @@ function App() {
   const [stats, setStats] = useState({}); // { '2024-06-05': { correct: 0, wrong: 0, profit: 0, bet: 0 } }
   const [showStats, setShowStats] = useState(false);
 
+  const [isBetting, setIsBetting] = useState(false);
+
   // Helper: คืนวันที่ปัจจุบันในรูปแบบ yyyy-mm-dd
   const getToday = () => {
     const d = new Date();
@@ -139,13 +141,13 @@ function App() {
 
   // ฟังก์ชันเพิ่มผลรอบใหม่ + อัปเดต stats
   const addResult = (value) => {
-    // จำกัดจำนวนผลสูงสุด 90 ตา
     if (results.length >= 90) {
       alert('สามารถจดผลได้สูงสุด 90 ตาเท่านั้น');
       return;
     }
 
-    if (results.length >= 15 && prediction) {
+    // เพิ่ม logic: ถ้าไม่ได้กด "เล่นไม้นี้" ให้บันทึกผลเฉยๆ ไม่คิดเงิน/ถูกผิด
+    if (results.length >= 15 && prediction && isBetting) {
       let predValue = null;
       if (prediction.includes('B (Banker)')) predValue = 'B';
       else if (prediction.includes('P (Player)')) predValue = 'P';
@@ -153,16 +155,15 @@ function App() {
 
       if (predValue) {
         let isCorrect = predValue === value;
-        // กรณี Tie (T) ไม่เสียเงิน ไม่ได้คืน ไม่บันทึก win/lose
         if (value === 'T') {
           setHistory(h => [
             ...h,
-            { guess: predValue, actual: value, correct: null }
+            { guess: predValue, actual: value, correct: null, bet: isBetting }
           ]);
         } else {
           setHistory(h => [
             ...h,
-            { guess: predValue, actual: value, correct: isCorrect }
+            { guess: predValue, actual: value, correct: isCorrect, bet: isBetting }
           ]);
           setBalance(bal => isCorrect ? bal + betAmount : bal - betAmount);
           setShowResult(isCorrect ? 'win' : 'lose');
@@ -200,6 +201,7 @@ function App() {
     });
     setResults([...results, value]);
     setPrediction(null);
+    setIsBetting(false); // reset ทุกครั้งหลังจดผล
   };
 
   // ฟังก์ชันคาดเดารอบถัดไป (อัตโนมัติ)
@@ -792,6 +794,22 @@ function App() {
         </div>
         {/* ปุ่มจดผล */}
         <div>
+          <button
+            style={{
+              background: isBetting ? '#ffb700' : '#444',
+              color: isBetting ? '#222' : '#fff',
+              marginRight: 12,
+              padding: '8px 18px',
+              borderRadius: 8,
+              fontWeight: 600,
+              border: 'none',
+              fontSize: 16,
+              cursor: 'pointer'
+            }}
+            onClick={() => setIsBetting(v => !v)} // toggle แทน
+          >
+            เล่นไม้นี้
+          </button>
           <button
             style={{ background: 'blue', color: '#fff', marginRight: 8, width: 40, height: 40, fontSize: 18, borderRadius: '50%' }}
             onClick={() => addResult('P')}
