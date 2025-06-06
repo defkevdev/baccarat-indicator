@@ -49,7 +49,6 @@ function getBigRoad(results, maxRows = 6, maxCols) {
 }
 
 function App() {
-  const [guess, setGuess] = useState('');
   const [results, setResults] = useState([]);
   const [prediction, setPrediction] = useState('');
   const [budget, setBudget] = useState(1000); // เงินทุนเริ่มต้น
@@ -58,7 +57,6 @@ function App() {
 
   // เพิ่มบรรทัดนี้
   const [history, setHistory] = useState([]); // สำหรับเก็บประวัติทายถูก/ผิด
-  const [input, setInput] = useState(''); // สำหรับ input ถ้ามี
   const [showResult, setShowResult] = useState(null); // สำหรับ popup win/lose
 
   // ฟีเจอร์บันทึกผลรายวัน/สัปดาห์
@@ -294,7 +292,6 @@ function App() {
     setBalance(1000);
     setResults([]);
     setPrediction(null);
-    setInput('');
     setHistory([]);
   };
 
@@ -810,7 +807,6 @@ function App() {
             onClick={() => {
               setResults([]);
               setPrediction(null);
-              setInput('');
               setHistory([]);
             }}
           >
