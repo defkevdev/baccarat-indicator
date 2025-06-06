@@ -49,6 +49,8 @@ function getBigRoad(results, maxRows = 6, maxCols) {
 }
 
 function App() {
+    const [results, setResults] = useState([]);
+  const [prediction, setPrediction] = useState(null);
   // const [input, setInput] = useState(""); // ลบทิ้งหรือคอมเมนต์ไปเลย
   // ฟีเจอร์งบประมาณ
   const [budget, setBudget] = useState(1000); // เงินทุนเริ่มต้น
