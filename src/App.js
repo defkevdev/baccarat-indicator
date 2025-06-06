@@ -401,9 +401,11 @@ function App() {
                     <td style={{ padding: 4 }}>{day}</td>
                     <td style={{ color: 'lime', textAlign: 'center' }}>{s.correct}</td>
                     <td style={{ color: 'tomato', textAlign: 'center' }}>{s.wrong}</td>
-                    <td style={{ color: '#ffb700', textAlign: 'center' }}>{s.bet}</td>
+                    <td style={{ color: '#ffb700', textAlign: 'center' }}>
+                      {s.bet.toLocaleString()}
+                    </td>
                     <td style={{ color: s.profit >= 0 ? 'lime' : 'tomato', textAlign: 'center' }}>
-                      {s.profit > 0 ? '+' : ''}{s.profit}
+                      {s.profit > 0 ? '+' : ''}{s.profit.toLocaleString()}
                     </td>
                   </tr>
                 );
@@ -777,6 +779,9 @@ function App() {
               style={{ width: 100, marginLeft: 4 }}
               onChange={e => setBalance(Number(e.target.value))}
             />
+            <span style={{ marginLeft: 8, color: '#ffb700', fontWeight: 600 }}>
+              {balance.toLocaleString()}
+            </span>
           </label>
           <button
             style={{ marginLeft: 16 }}
