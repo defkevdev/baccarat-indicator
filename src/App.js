@@ -50,7 +50,6 @@ function getBigRoad(results, maxRows = 6, maxCols) {
 
 function App() {
   const [results, setResults] = useState([]);
-  const [history, setHistory] = useState([]); // เก็บประวัติผลคาดเดา
   const [showResult, setShowResult] = useState(null); // สำหรับ popup ผลลัพธ์
 
   // ฟีเจอร์งบประมาณ
