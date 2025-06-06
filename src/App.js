@@ -574,6 +574,22 @@ function App() {
                 </div>
                 <hr style={{ border: 0, borderTop: '1px solid #444', margin: '12px 0' }} />
 
+                {/* เพิ่มข้อความแนะนำการเดิมพัน */}
+                <div style={{ 
+                  background: '#333', 
+                  color: '#ffeb3b', 
+                  padding: '10px 16px', 
+                  borderRadius: 8, 
+                  marginBottom: 18, 
+                  fontWeight: 600, 
+                  fontSize: 16 
+                }}>
+                  แนะนำให้เดิมพันตาเว้นตาเพื่อความแม่นยำ<br />
+                  <span style={{ color: '#fff', fontWeight: 400, fontSize: 15 }}>
+                    ไม่แนะนำให้เดิมพันทุกตา
+                  </span>
+                </div>
+
                 <div style={{ marginBottom: 16 }}>
                   <b>🔰 1. เริ่มต้นใช้งาน</b>
                   <ul style={{ margin: '8px 0 8px 22px', padding: 0 }}>
@@ -878,9 +894,6 @@ function App() {
             {bigRoad.map((row, rowIdx) =>
               row.map((cell, colIdx) => renderBigRoadCell(cell, rowIdx, colIdx))
             )}
-          </div>
-          <div style={{ color: '#ffeb3b', fontSize: 13, marginTop: 6, textAlign: 'center' }}>
-            *คลิกขวาที่วงกลมเพื่อลบผลลัพธ์*
           </div>
         </div>
         <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 40 }}>
