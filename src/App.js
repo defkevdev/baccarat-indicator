@@ -853,6 +853,7 @@ function App() {
               setResults([]);
               setPrediction(null);
               setHistory([]);
+              // ไม่ต้อง setStats({}) ในปุ่ม "เริ่มจดผลใหม่"
             }}
           >
             เริ่มจดผลใหม่
@@ -894,6 +895,9 @@ function App() {
             {bigRoad.map((row, rowIdx) =>
               row.map((cell, colIdx) => renderBigRoadCell(cell, rowIdx, colIdx))
             )}
+          </div>
+          <div style={{ color: '#ffeb3b', fontSize: 13, marginTop: 6, textAlign: 'center' }}>
+            *คลิกขวาที่วงกลมเพื่อลบผลลัพธ์*
           </div>
         </div>
         <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 40 }}>
