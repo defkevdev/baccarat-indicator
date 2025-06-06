@@ -49,13 +49,17 @@ function getBigRoad(results, maxRows = 6, maxCols) {
 }
 
 function App() {
-    const [results, setResults] = useState([]);
-  const [prediction, setPrediction] = useState(null);
-  // const [input, setInput] = useState(""); // ลบทิ้งหรือคอมเมนต์ไปเลย
-  // ฟีเจอร์งบประมาณ
+  const [guess, setGuess] = useState('');
+  const [results, setResults] = useState([]);
+  const [prediction, setPrediction] = useState('');
   const [budget, setBudget] = useState(1000); // เงินทุนเริ่มต้น
   const [betAmount, setBetAmount] = useState(100); // จำนวนเงินเดิมพันต่อไม้
   const [balance, setBalance] = useState(1000); // ยอดเงินคงเหลือ
+
+  // เพิ่มบรรทัดนี้
+  const [history, setHistory] = useState([]); // สำหรับเก็บประวัติทายถูก/ผิด
+  const [input, setInput] = useState(''); // สำหรับ input ถ้ามี
+  const [showResult, setShowResult] = useState(null); // สำหรับ popup win/lose
 
   // ฟีเจอร์บันทึกผลรายวัน/สัปดาห์
   const [stats, setStats] = useState({}); // { '2024-06-05': { correct: 0, wrong: 0, profit: 0, bet: 0 } }
