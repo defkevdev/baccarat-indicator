@@ -49,9 +49,7 @@ function getBigRoad(results, maxRows = 6, maxCols) {
 }
 
 function App() {
-  const [results, setResults] = useState([]);
-  const [showResult, setShowResult] = useState(null); // สำหรับ popup ผลลัพธ์
-
+  // const [input, setInput] = useState(""); // ลบทิ้งหรือคอมเมนต์ไปเลย
   // ฟีเจอร์งบประมาณ
   const [budget, setBudget] = useState(1000); // เงินทุนเริ่มต้น
   const [betAmount, setBetAmount] = useState(100); // จำนวนเงินเดิมพันต่อไม้
