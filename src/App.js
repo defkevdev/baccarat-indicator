@@ -301,6 +301,7 @@ function App() {
   const [showAbout, setShowAbout] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
   const [showSupport, setShowSupport] = useState(false);
+  const [showBugReport, setShowBugReport] = useState(false);
 
   // --- UI ส่วนแสดงผลสถิติ 7 วัน ---
   const renderStatsPopup = () => {
@@ -658,6 +659,25 @@ function App() {
           <h2 style={{ marginBottom: 4 }}>baccarat indicator</h2>
           <div style={{ fontSize: 14, color: '#aaa', marginBottom: 16, textAlign: 'center' }}>by freecash.org</div>
         </div>
+        {/* ปุ่ม Report Bugs */}
+        <button
+          style={{
+            position: 'absolute',
+            top: 24,
+            right: 140,
+            background: '#444',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            padding: '8px 20px',
+            fontSize: 16,
+            cursor: 'pointer',
+            zIndex: 100
+          }}
+          onClick={() => setShowBugReport(true)}
+        >
+          Report Bugs
+        </button>
         {/* ปุ่ม About Us */}
         <button
           style={{
@@ -762,6 +782,61 @@ function App() {
                 <div style={{ marginTop: 18, color: '#ffeb3b', fontWeight: 600, fontSize: 15 }}>
                   *freecash baccarat indicator คือองค์กรไม่แสวงหาผลกำไร สร้างโดยผู้เล่น เพื่อผู้เล่น*
                 </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Popup Report Bugs */}
+        {showBugReport && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 0, left: 0, width: '100vw', height: '100vh',
+              background: '#000a',
+              zIndex: 99999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'fadeInBg 0.3s'
+            }}
+            onClick={() => setShowBugReport(false)}
+          >
+            <div
+              style={{
+                background: '#222',
+                color: '#fff',
+                padding: '32px 28px',
+                borderRadius: 16,
+                maxWidth: 480,
+                fontSize: 17,
+                boxShadow: '0 8px 32px #000a',
+                position: 'relative',
+                animation: 'popupZoomIn 0.3s'
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                style={{
+                  position: 'absolute',
+                  top: 12,
+                  right: 16,
+                  background: 'transparent',
+                  color: '#fff',
+                  border: 'none',
+                  fontSize: 24,
+                  cursor: 'pointer'
+                }}
+                onClick={() => setShowBugReport(false)}
+                aria-label="close"
+              >×</button>
+              <div style={{ whiteSpace: 'normal', lineHeight: 1.7 }}>
+                <b>Report Bugs</b>
+                <p style={{ marginTop: 8 }}>
+                  หากพบข้อผิดพลาดในการใช้งาน กรุณาติดต่อเราได้ที่<br />
+                  <a href="mailto:support@freecash.org" style={{ color: '#4fc3f7' }}>
+                    support@freecash.org
+                  </a>
+                </p>
               </div>
             </div>
           </div>
