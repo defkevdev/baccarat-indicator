@@ -908,10 +908,12 @@ function App() {
           </div>
         </div>
         <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 40 }}>
+          {/* ย้ายข้อความ "คาดว่า :" ขึ้นมาอยู่ข้างบน */}
+          <div style={{ marginRight: 16, fontSize: 18, color: '#ffeb3b', fontWeight: 600 }}>
+            {prediction && 'คาดว่า :'}
+
+          </div>
           {renderPredictionCircle(prediction)}
-        </div>
-        <div style={{ marginTop: 8, fontSize: 18, textAlign: 'center', color: '#ffeb3b', fontWeight: 600 }}>
-          {prediction}
         </div>
         <div style={{ marginTop: 16, fontSize: 18 }}>
           <span style={{ color: 'lime' }}>ทายถูก: {correctCount} ตา</span>
