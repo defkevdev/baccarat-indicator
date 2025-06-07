@@ -230,17 +230,17 @@ function App() {
       <div
         key={idx}
         style={{
-          width: 28,
-          height: 28,
+          width: 36,
+          height: 36,
           borderRadius: '50%',
           background: color,
-          margin: 1,
+          margin: 2,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#fff',
           fontWeight: 'bold',
-          fontSize: 16,
+          fontSize: 20,
           border: isTie ? '2px solid #fff' : undefined,
           position: 'relative'
         }}
@@ -545,6 +545,8 @@ function App() {
                 padding: '32px 28px',
                 borderRadius: 16,
                 maxWidth: 540,
+                maxHeight: '90vh', // เพิ่มบรรทัดนี้
+                overflowY: 'auto', // เพิ่มบรรทัดนี้
                 fontSize: 17,
                 boxShadow: '0 8px 32px #000a',
                 position: 'relative',
@@ -699,6 +701,8 @@ function App() {
                 padding: '32px 28px',
                 borderRadius: 16,
                 maxWidth: 480,
+                maxHeight: '90vh', // เพิ่มบรรทัดนี้
+                overflowY: 'auto', // เพิ่มบรรทัดนี้
                 fontSize: 17,
                 boxShadow: '0 8px 32px #000a',
                 position: 'relative',
@@ -888,10 +892,13 @@ function App() {
             background: '#222',
             padding: 8,
             borderRadius: 8,
-            margin: '16px 0'
+            margin: '16px 0',
+            // เพิ่มขนาดตาราง
+            maxWidth: '100%',
+            overflowX: 'auto'
           }}
         >
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${bigRoad[0].length}, 30px)` }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${bigRoad[0].length}, 38px)` }}>
             {bigRoad.map((row, rowIdx) =>
               row.map((cell, colIdx) => renderBigRoadCell(cell, rowIdx, colIdx))
             )}
